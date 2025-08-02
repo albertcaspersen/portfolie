@@ -151,8 +151,16 @@ function toggleMute() {
     isMuted.value = !isMuted.value
 }
 
-// GSAP transition hooks (uændret)
+// GSAP transition hooks (OPDATERET MED MOBIL-TJEK)
 const onEnter = (el, done) => {
+    // NYT: Tjek om vi er på mobil. Hvis ja, vis elementet øjeblikkeligt og afslut.
+    if (isMobile.value) {
+        gsap.set(el, { autoAlpha: 1 });
+        done();
+        return;
+    }
+
+    // Denne kode kører kun på desktop
     const filter = document.querySelector("#noise-filter feTurbulence");
     const displacement = document.querySelector("#noise-filter feDisplacementMap");
     const tl = gsap.timeline({ onComplete: done });
@@ -168,6 +176,14 @@ const onEnter = (el, done) => {
 };
 
 const onLeave = (el, done) => {
+    // NYT: Tjek om vi er på mobil. Hvis ja, skjul elementet øjeblikkeligt og afslut.
+    if (isMobile.value) {
+        gsap.set(el, { autoAlpha: 0 });
+        done();
+        return;
+    }
+
+    // Denne kode kører kun på desktop
     const filter = document.querySelector("#noise-filter feTurbulence");
     const displacement = document.querySelector("#noise-filter feDisplacementMap");
     const tl = gsap.timeline({ onComplete: done });
