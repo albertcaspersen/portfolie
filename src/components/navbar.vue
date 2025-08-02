@@ -16,7 +16,7 @@ import { isDarkMode } from '../themeState.js';
 .nav-link {
   text-decoration: none;
   color: #0300c7; /* Standard farve: Blå */
-  font-family: 'Panchang-Regular', 'Arial', sans-serif;
+  font-family: 'Panchang', 'Arial', sans-serif;
   font-size: 1.2rem;
   transition: color 0.4s;
   margin-right: 5em;
@@ -60,7 +60,7 @@ import { isDarkMode } from '../themeState.js';
   .nav-link {
     text-decoration: none;
     color: #0300c7; /* Standard farve: Blå */
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     font-size: 1rem;
     transition: color 0.4s;
     margin-right: 20%;
