@@ -369,9 +369,10 @@ onBeforeUnmount(() => {
 
     /* Fjern font-family herfra */
     .info {
-        font-weight: 100;
+        font-weight: 300;
         color: #0300c7;
         font-size: 1rem;
+        font-family: 'Panchang', 'Arial', sans-serif;
     }
 
     /* Fjern font-family herfra */
