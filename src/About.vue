@@ -379,6 +379,7 @@ onBeforeUnmount(() => {
 
     /* Fjern font-family herfra */
     .Albert {
+        /* TEST */
         font-weight: 400;
         font-size: 3.5rem;
         line-height: 1;
