@@ -358,6 +358,7 @@ onBeforeUnmount(() => {
         text-align: center;
         padding: 0;
         color: #0300c7;
+        font-family: panchang;
     }
 
     .info {
@@ -365,6 +366,7 @@ onBeforeUnmount(() => {
         font-weight: 100;
         color: #0300c7;
         font-size: 1rem;
+        font-family: panchang;
     }
 
     .grid-infoTekst { 
@@ -373,6 +375,7 @@ onBeforeUnmount(() => {
         margin-left: 3%; 
         max-width: 50%; 
         margin-top: 10%;
+        font-family: panchang;
     }
 
     .Albert {
@@ -385,6 +388,7 @@ onBeforeUnmount(() => {
         color: #0300c7;
         margin-bottom: -2vh;
         margin-left: 1vw;
+        font-family: panchang;
     }
     
     .Valdemar {
@@ -396,6 +400,7 @@ onBeforeUnmount(() => {
         color: #0300c7;
         margin-left: 1vw;
         padding: 0px;
+        font-family: panchang;
         
 
     }
@@ -424,6 +429,7 @@ onBeforeUnmount(() => {
         margin-top:15%;
         padding: 0px;
         margin-top: 20vh;
+        font-family: panchang;
     }
 
     .omMig2 {
@@ -433,6 +439,7 @@ onBeforeUnmount(() => {
         margin-top: 3vh;
         max-width: 85vw;
         padding: 0px;
+        font-family: panchang;
     }
     .grid-beskrivelse { grid-column: 2 / 13; grid-row: 5; }
 
