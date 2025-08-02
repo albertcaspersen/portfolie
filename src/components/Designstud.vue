@@ -23,7 +23,7 @@ import { isDarkMode } from '../themeState.js';
     color: #0300c7; /* Standard farve: Blå */
     height: 8vh;
     padding-left: 1vw;
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     font-size: 1.75rem;
     margin-top: -3px;
     margin-left: -3px;
@@ -46,7 +46,8 @@ import { isDarkMode } from '../themeState.js';
     color: #0300c7; /* Standard farve: Blå */
     height: 8vh;
     padding-left: 5%;
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    /*font-family: 'Panchang-Regular', 'Arial', sans-serif;*/
+    font-family: 'Panchang', 'Arial', sans-serif;
     font-size: 1.15rem;
     margin-top: -3px;
     margin-left: -3px;
