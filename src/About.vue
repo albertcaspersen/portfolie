@@ -385,7 +385,8 @@ onBeforeUnmount(() => {
         line-height: 1;
         margin: 0;
         margin-top: 65vh;
-        color: #0300c7;
+        /*color: #0300c7;*/
+        color: red !important;
         margin-bottom: -2vh;
         margin-left: 1vw;
     }
