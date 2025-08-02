@@ -341,45 +341,44 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 600px) {
-
+    /* Vi lader body arve fonten fra panchang.css */
 
     .grid-container {
         display: grid;
-        grid-template-columns: repeat(12, 1fr); /* Bevarer 12 kolonner for fleksibilitet */
-        grid-template-rows: auto; /* Lad rækkerne tilpasse sig indholdet */
-        gap: 10px; /* Reduceret gap for mobil */
-        padding: 0; /* Tilføj lidt sidepolstring */
+        grid-template-columns: repeat(12, 1fr);
+        grid-template-rows: auto;
+        gap: 10px;
+        padding: 0;
         width: 100%;
     }
 
+    /* Fjern font-family herfra, den arver nu korrekt */
     .Albert, .Valdemar {
-        font-size: 4.5rem; /* Juster efter smag */
+        font-size: 4.5rem;
         line-height: 1.1;
         text-align: center;
         padding: 0;
         color: #0300c7;
-        font-family: panchang;
     }
 
+    /* Fjern font-family herfra */
     .info {
-        font-family: 'Panchang-light', 'Arial', sans-serif;
         font-weight: 100;
         color: #0300c7;
         font-size: 1rem;
-        font-family: panchang;
     }
 
+    /* Fjern font-family herfra */
     .grid-infoTekst { 
         grid-column: 1 / 13; 
         grid-row: 3; 
         margin-left: 3%; 
         max-width: 50%; 
         margin-top: 10%;
-        font-family: panchang;
     }
 
+    /* Fjern font-family herfra */
     .Albert {
-        font-family: 'Panchang-Regular', 'Arial', sans-serif;
         font-weight: 400;
         font-size: 3.5rem;
         line-height: 1;
@@ -388,11 +387,10 @@ onBeforeUnmount(() => {
         color: #0300c7;
         margin-bottom: -2vh;
         margin-left: 1vw;
-        font-family: panchang;
     }
     
+    /* Fjern font-family herfra */
     .Valdemar {
-        font-family: 'Panchang-Regular', 'Arial', sans-serif;
         font-weight: 400;
         font-size: 3.5rem;
         line-height: 1;
@@ -400,64 +398,59 @@ onBeforeUnmount(() => {
         color: #0300c7;
         margin-left: 1vw;
         padding: 0px;
-        font-family: panchang;
-        
-
     }
 
-    /* OPDATERET: Flyt pilens grid-container */
     .grid-pil { 
-        grid-column: 11 / 13; /* Placeres ved siden af Valdemar */
-        grid-row: 4;        /* Samme række som Valdemar */
+        grid-column: 11 / 13;
+        grid-row: 4;
         margin-top: 1.8vh;
-        margin-left: 40%;  /* Finjuster vertikal position (juster efter behov) */
+        margin-left: 40%;
     }
     
-    /* OPDATERET: Gør pilen mindre og nulstil dens position */
     .pil-billede {
-        position: static; /* Ophæver 'position: absolute' fra desktop */
-        height: 25px;     /* Gør pilen mindre */
+        position: static;
+        height: 25px;
         width: 25px;
         margin: 0; 
-        padding: 0px;       /* Nulstil margin */
+        padding: 0px;
     }
 
+    /* Fjern font-family herfra, men behold font-weight fra den originale regel,
+       for at få 'Panchang-medium' til at virke. Vi skal sikre at font-weight matcher */
     .omMig {
-        font-family: 'Panchang-medium', 'Arial', sans-serif;
+        /* font-family: 'Panchang-medium', 'Arial', sans-serif; <-- fjernet */
+        font-weight: 500; /* <-- behold denne for at matche Panchang-Medium */
         color: #0300c7;
         font-size: 1.2rem;
-        margin-top:15%;
-        padding: 0px;
         margin-top: 20vh;
-        font-family: panchang;
+        padding: 0px;
     }
 
+    /* Fjern font-family herfra */
     .omMig2 {
-        font-family: 'Panchang-Regular', 'Arial', sans-serif;
         color: #0300c7;
         font-size: 0.9rem;
         margin-top: 3vh;
         max-width: 85vw;
         padding: 0px;
-        font-family: panchang;
     }
+
     .grid-beskrivelse { grid-column: 2 / 13; grid-row: 5; }
 
     .grid-migPic { 
         grid-column: 2 / 13; 
         grid-row: 5; 
-        margin-top: 61vh; /* Lidt luft over billedet */
+        margin-top: 61vh;
         display: flex;
         padding: 0px;
-        
     }
+
     .migPic {
-        height: 20vh;     /* SÆT HØJDEN: Billedet vil være 50% af skærmens højde. Juster tallet efter smag (f.eks. 40vh, 60vh). */
-        width: 40%;      /* FYLD BREDDEN: Får billedets 'ramme' til at fylde hele sin grid-container. */
-        object-fit: cover;/* MAGIEN: Sørger for, at billedet dækker hele rammen uden at blive forvrænget. Den overskydende del af billedet beskæres. */
+        height: 20vh;
+        width: 40%;
+        object-fit: cover;
         margin: 0;
         margin-bottom: 5vh;
     }
-    
 }
 </style>

@@ -1,25 +1,26 @@
 @font-face {
-    font-family: 'Panchang-Regular'; /* Du bestemmer selv navnet */
-    src: url('./assets/fonts/Panchang-Regular.woff2') format('woff2'); /* KORREKT STI */
+    font-family: 'Panchang-Regular';
+    /* Stien er nu relativ til DENNE fil, som ligger i samme mappe som fonten */
+    src: url('./Panchang-Regular.woff2') format('woff2'); /* KORRIGERET STI */
     font-weight: 400;
     font-style: normal;
   }
   
   @font-face {
     font-family: 'Panchang-Medium';
-    src: url('./assets/fonts/Panchang-Medium.woff2') format('woff2'); /* KORREKT STI */
-    font-weight: 500;
+    src: url('./Panchang-Medium.woff2') format('woff2'); /* KORRIGERET STI */
+    font-weight: 500; /* Vigtigt for at kunne bruge font-weight: 500; */
     font-style: normal;
   }
   
   @font-face {
     font-family: 'Panchang-Light';
-    src: url('./assets/fonts/Panchang-Light.woff2') format('woff2'); /* KORREKT STI */
-    font-weight: 300;
+    src: url('./Panchang-Light.woff2') format('woff2'); /* KORRIGERET STI */
+    font-weight: 300; /* Vigtigt for at kunne bruge font-weight: 300; */
     font-style: normal;
   }
   
-  /* Nu kan du bruge fonten som normalt */
+  /* Denne regel er perfekt! Den sætter en god standard for hele siden. */
   body {
     font-family: 'Panchang-Regular', 'Arial', sans-serif;
   }
