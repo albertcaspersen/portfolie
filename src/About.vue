@@ -433,6 +433,7 @@ onBeforeUnmount(() => {
         font-size: 1.2rem;
         margin-top: 20vh;
         padding: 0px;
+        font-family: 'Panchang', 'Arial', sans-serif;
     }
 
     /* Fjern font-family herfra */
@@ -442,6 +443,7 @@ onBeforeUnmount(() => {
         margin-top: 3vh;
         max-width: 85vw;
         padding: 0px;
+        font-family: 'Panchang', 'Arial', sans-serif;
     }
 
     .grid-beskrivelse { grid-column: 2 / 13; grid-row: 5; }
