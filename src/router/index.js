@@ -1,3 +1,4 @@
+// router/index.js
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '@/Home.vue'
 import About from '@/About.vue'
@@ -5,11 +6,30 @@ import Projects from '@/Projects.vue'
 import Contact from '@/Contact.vue'
 
 const routes = [
-  { path: '/', redirect: '/about' }, // 👈 Redirect til /about
-  { path: '/about', component: About },
-  { path: '/projects', component: Projects },
-  { path: '/contact', component: Contact },
-  { path: '/home', component: Home } // 👈 Hvis du stadig vil beholde Home
+  // Din redirect er fin, den behøver ikke meta-data.
+  { path: '/', redirect: '/about' },
+
+  // Vi tildeler en logisk rækkefølge til dine sider.
+  {
+    path: '/about',
+    component: About,
+    meta: { order: 0 } // Startside
+  },
+  {
+    path: '/projects',
+    component: Projects,
+    meta: { order: 1 } // Næste side
+  },
+  {
+    path: '/contact',
+    component: Contact,
+    meta: { order: 2 } // Sidste side
+  },
+  {
+    path: '/home',
+    component: Home,
+    meta: { order: 99 } // Giver et højt tal, hvis den er udenfor normal navigation
+  }
 ]
 
 const router = createRouter({

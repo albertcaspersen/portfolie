@@ -1,10 +1,7 @@
-
 <script setup>
 import Navbar from './components/navbar.vue'
 import Designstud from './components/Designstud.vue'
 </script>
-
-
 
 <template>
   <div class="grid-container">
@@ -18,10 +15,10 @@ import Designstud from './components/Designstud.vue'
 
     <h2 class="grid-item grid-infotekst info">
       <span style="font-weight: 700;">Mail</span><br>
-       <a href="mailto:albertcaspersen@hotmail.com" style="text-decoration: none; color: #0300c7; ">albertcaspersen@hotmail.com</a><br><br>
+       <a href="mailto:albertcaspersen@hotmail.com" style="text-decoration: none; color: #0300c7;">albertcaspersen@hotmail.com</a><br><br>
 
       <span style="font-weight: 700;">Socials</span><br>
-      <a href="https://www.instagram.com/albert_caspersen/" style="text-decoration: none; color: #0300c7; ">Instagram</a><br>
+      <a href="https://www.instagram.com/albert_caspersen/" style="text-decoration: none; color: #0300c7;">Instagram</a><br>
       <a href="https://www.facebook.com/albert.caspersen?locale=da_DK" style="text-decoration: none; color: #0300c7;">Facebook</a><br><br>
 
       <span style="font-weight: 700;">Phone</span><br>
@@ -30,21 +27,20 @@ import Designstud from './components/Designstud.vue'
   </div>
 </template>
 
-  
-  
 <style scoped>
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: auto auto auto auto auto;
-    gap: 20px;
-    position: relative;
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: auto;
-    overflow-y: visible;
-  }
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto auto auto auto auto;
+  gap: 20px;
+  position: relative;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: auto;
+  overflow-y: visible;
+}
 
 .letstalk {
   color: #0300c7;
@@ -53,7 +49,6 @@ import Designstud from './components/Designstud.vue'
   font-size: 4rem;
   margin-top: 30vh;
   margin-left: 1vw;
-
 }
 
 .grid-talktext {
@@ -80,12 +75,26 @@ import Designstud from './components/Designstud.vue'
   font-size: 1rem;
   margin-top: 15vh;
   font-weight: 200;
+  text-align: right; /* tekstens linjer bliver højrejusteret */
 }
 
 .grid-infotekst {
   grid-column: 9/12;
   grid-row: 3;
+  justify-self: end; /* hele boksen rykkes til højre */
 }
 
+@media (max-width: 600px) {
+  .info {
+    font-size: 0.9rem;
+    margin-top: 10vh;
+    text-align: right; /* bevarer højrejustering på små skærme */
+    margin-right: 3%;
+  }
+
+  .grid-infotekst {
+    grid-column: 1/13; /* fylder hele bredden på mobil */
+    justify-self: end;
+  }
+}
 </style>
-  
