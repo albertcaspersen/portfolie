@@ -379,7 +379,6 @@ onBeforeUnmount(() => {
         margin: 0;
         margin-top: 65vh;
         color: #0300c7;
-        background-color: orange; /* Du kan fjerne denne test-farve */
         margin-bottom: -2vh;
         margin-left: 1vw;
     }
