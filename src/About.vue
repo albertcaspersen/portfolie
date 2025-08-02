@@ -356,7 +356,6 @@ onBeforeUnmount(() => {
         font-size: 4.5rem; /* Juster efter smag */
         line-height: 1.1;
         text-align: center;
-        margin: 0; /* VIGTIGT: Fjerner de store margener */
         padding: 0;
         color: #0300c7;
     }
@@ -382,7 +381,7 @@ onBeforeUnmount(() => {
         font-size: 3.5rem;
         line-height: 1;
         margin: 0;
-        margin-top: 75vh;
+        margin-top: 65vh;
         color: #0300c7;
         margin-bottom: -2vh;
         margin-left: 1vw;
@@ -424,6 +423,7 @@ onBeforeUnmount(() => {
         font-size: 1.2rem;
         margin-top:15%;
         padding: 0px;
+        margin-top: 20vh;
     }
 
     .omMig2 {
@@ -439,7 +439,7 @@ onBeforeUnmount(() => {
     .grid-migPic { 
         grid-column: 2 / 13; 
         grid-row: 5; 
-        margin-top: 45vh; /* Lidt luft over billedet */
+        margin-top: 61vh; /* Lidt luft over billedet */
         display: flex;
         padding: 0px;
         
