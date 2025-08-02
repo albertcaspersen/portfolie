@@ -479,7 +479,8 @@ onBeforeUnmount(() => {
     }
 
     .grid-migPic {
-        margin-top: 65vh; /* Juster billedets position ift. ny tekststørrelse */
+        margin-top: 60vh; /* Juster billedets position ift. ny tekststørrelse */
+        padding-top: 5vh;
     }
 }
 
