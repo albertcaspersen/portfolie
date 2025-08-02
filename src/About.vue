@@ -354,11 +354,17 @@ onBeforeUnmount(() => {
 
     /* Fjern font-family herfra, den arver nu korrekt */
     .Albert, .Valdemar {
-        font-size: 4.5rem;
+        /* HER ER LØSNINGEN: Vi er eksplicitte */
+        font-family: 'Panchang', 'Arial', sans-serif;
+        font-weight: 400; /* Fortæl den PRÆCIS hvilken vægt */
+    
+        /* Resten af din styling */
+        font-size: 3.5rem;
         line-height: 1.1;
-        text-align: center;
-        padding: 0;
+        margin: 0;
         color: #0300c7;
+        margin-left: 1vw;
+        padding: 0px;
     }
 
     /* Fjern font-family herfra */
