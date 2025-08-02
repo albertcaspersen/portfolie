@@ -1,26 +1,33 @@
+
 @font-face {
-    font-family: 'Panchang-Regular';
-    /* Stien er nu relativ til DENNE fil, som ligger i samme mappe som fonten */
-    src: url('./Panchang-Regular.woff2') format('woff2'); /* KORRIGERET STI */
-    font-weight: 400;
+    font-family: 'Panchang';
+    src: url('./Panchang-Light.woff') format('woff');
+    font-weight: 300; /* Light */
     font-style: normal;
   }
   
   @font-face {
-    font-family: 'Panchang-Medium';
-    src: url('./Panchang-Medium.woff2') format('woff2'); /* KORRIGERET STI */
-    font-weight: 500; /* Vigtigt for at kunne bruge font-weight: 500; */
+    font-family: 'Panchang';
+    src: url('./Panchang-Regular.woff') format('woff');
+    font-weight: 400; /* Regular */
     font-style: normal;
   }
   
   @font-face {
-    font-family: 'Panchang-Light';
-    src: url('./Panchang-Light.woff2') format('woff2'); /* KORRIGERET STI */
-    font-weight: 300; /* Vigtigt for at kunne bruge font-weight: 300; */
+    font-family: 'Panchang';
+    src: url('./Panchang-Semibold.woff') format('woff');
+    font-weight: 600; /* SemiBold */
     font-style: normal;
   }
   
-  /* Denne regel er perfekt! Den sætter en god standard for hele siden. */
+  @font-face {
+    font-family: 'Panchang';
+    src: url('./Panchang-Bold.woff') format('woff');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+  }
+  
+  /* Sæt en standard-font for hele siden */
   body {
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
   }
