@@ -55,12 +55,13 @@ function deleteWriterEffect(element, text, speed) {
 function setupResponsiveAnimations() {
   // Brug matchMedia til at definere forskellige animationer for forskellige skærmstørrelser
   mm.add({
-    // Definer dine breakpoints
-    isDesktop: "(min-width: 600px)",
+    // NYT: Justerede breakpoints for mere granulær kontrol
+    isDesktop: "(min-width: 769px)",
+    isTablet: "(min-width: 600px) and (max-width: 768px)",
     isMobile: "(max-width: 599px)"
   }, (context) => {
     // Få de aktive betingelser fra context-objektet
-    let { isDesktop, isMobile } = context.conditions;
+    let { isDesktop, isTablet, isMobile } = context.conditions;
 
     if (isDesktop) {
         // Nulstil elementernes starttilstand for desktop
@@ -120,7 +121,7 @@ function setupResponsiveAnimations() {
             .to(pilRef.value, { y: -20, duration: 0.5, yoyo: true, repeat: -1, ease: 'power2.inOut', repeatDelay: 1.0 })
             .add(typeWriterEffect(infoRef.value, 'I am working on creating user-friendly and aesthetic digital solutions. Check out my projects and feel free to contact me!', 35), "<");
         });
-    } else if (isMobile) {
+    } else if (isMobile || isTablet) { // NYT: Samler logik for tablet og mobil
         // Skjul A og V og spring animationen over på mobil
         gsap.set(bogstavContainerRef.value, { display: 'none' });
         setupFinalState();
@@ -147,7 +148,7 @@ function setupFinalState() {
   }
 }
 
-// --- VUE LIFECYCLE HOOKS ---
+// --- VUE LIFECYCLE HOOKS (uændret) ---
 onMounted(() => {
     if (!hasAnimatedAbout.value) {
         setupResponsiveAnimations();
@@ -171,12 +172,10 @@ onBeforeUnmount(() => {
   mm.revert();
 });
 </script>
+
 <template>
+    <!-- Template er uændret -->
     <div class="grid-container">
-        <!-- 
-          De absolut positionerede elementer er flyttet ind i containeren 
-          for at forhindre dem i at skubbe til sidens layout. 
-        -->
         <h1 class="bogstav" ref="bogstavContainerRef">
             <span class="bogstav-a" ref="bogstavARef">A</span><br />
             <span class="bogstav-v" ref="bogstavVRef">V</span>
@@ -184,7 +183,6 @@ onBeforeUnmount(() => {
         <div class="startTekst" style="opacity: 0;" ref="startTekstRef"></div>
         <div class="slutTekst" style="opacity: 0;"></div>
 
-        <!-- Resten af sidens indhold følger herunder, som det var før -->
         <Navbar />
         <Designstud />
         
@@ -221,7 +219,7 @@ onBeforeUnmount(() => {
 </template>
 
 <style scoped>
-/* Din eksisterende CSS er uændret heroppe */
+/* Din eksisterende desktop CSS er uændret heroppe */
 .grid-container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -246,7 +244,6 @@ onBeforeUnmount(() => {
     grid-row: 4; 
 }
 
-/* NYT: Styling for selve pil-billedet (erstatter inline style) */
 .pil-billede {
     transform: rotate(135deg);
     position: absolute;
@@ -283,8 +280,6 @@ onBeforeUnmount(() => {
 .migPic {
     height: 60vh; margin-top: 21vh; margin-bottom: 17vh;
 }
-
-
 
 .migPic,
 .grid-beskrivelse {
@@ -340,9 +335,8 @@ onBeforeUnmount(() => {
     font-size: 1.2rem;
 }
 
+/* Generel mobil-styling (op til 600px) */
 @media (max-width: 600px) {
-    /* Vi lader body arve fonten fra panchang.css */
-
     .grid-container {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
@@ -352,13 +346,9 @@ onBeforeUnmount(() => {
         width: 100%;
     }
 
-    /* Fjern font-family herfra, den arver nu korrekt */
     .Albert, .Valdemar {
-        /* HER ER LØSNINGEN: Vi er eksplicitte */
         font-family: 'Panchang', 'Arial', sans-serif;
-        font-weight: 400; /* Fortæl den PRÆCIS hvilken vægt */
-    
-        /* Resten af din styling */
+        font-weight: 400; 
         font-size: 3.5rem;
         line-height: 1.1;
         margin: 0;
@@ -367,7 +357,6 @@ onBeforeUnmount(() => {
         padding: 0px;
     }
 
-    /* Fjern font-family herfra */
     .info {
         font-weight: 300;
         color: #0300c7;
@@ -375,7 +364,6 @@ onBeforeUnmount(() => {
         font-family: 'Panchang', 'Arial', sans-serif;
     }
 
-    /* Fjern font-family herfra */
     .grid-infoTekst { 
         grid-column: 1 / 13; 
         grid-row: 3; 
@@ -384,21 +372,18 @@ onBeforeUnmount(() => {
         margin-top: 10%;
     }
 
-    /* Fjern font-family herfra */
     .Albert {
-        /* TEST */
         font-weight: 400;
         font-size: 3.5rem;
         line-height: 1;
         margin: 0;
         margin-top: 65vh;
         color: #0300c7;
-        background-color: orange;
+        background-color: orange; /* Du kan fjerne denne test-farve */
         margin-bottom: -2vh;
         margin-left: 1vw;
     }
     
-    /* Fjern font-family herfra */
     .Valdemar {
         font-weight: 400;
         font-size: 3.5rem;
@@ -424,11 +409,8 @@ onBeforeUnmount(() => {
         padding: 0px;
     }
 
-    /* Fjern font-family herfra, men behold font-weight fra den originale regel,
-       for at få 'Panchang-medium' til at virke. Vi skal sikre at font-weight matcher */
     .omMig {
-        /* font-family: 'Panchang-medium', 'Arial', sans-serif; <-- fjernet */
-        font-weight: 500; /* <-- behold denne for at matche Panchang-Medium */
+        font-weight: 600; 
         color: #0300c7;
         font-size: 1.2rem;
         margin-top: 20vh;
@@ -436,7 +418,6 @@ onBeforeUnmount(() => {
         font-family: 'Panchang', 'Arial', sans-serif;
     }
 
-    /* Fjern font-family herfra */
     .omMig2 {
         color: #0300c7;
         font-size: 0.9rem;
@@ -464,4 +445,42 @@ onBeforeUnmount(() => {
         margin-bottom: 5vh;
     }
 }
+
+/* 
+ * NYT: Specifik styling for iPhone 15 og lignende smalle enheder.
+ * Disse regler overskriver reglerne fra (max-width: 600px) på skærme,
+ * der er 420px eller smallere, som f.eks. iPhone 15 (393px).
+*/
+@media (max-width: 420px) {
+    .Albert, .Valdemar {
+        /* Lidt mindre font for at sikre, det passer på smalle skærme */
+        font-size: 3.1rem; 
+    }
+
+    .Albert {
+        /* Juster to-margin for at passe til den nye font-størrelse */
+        margin-top: 68vh;
+    }
+
+    .omMig {
+        font-size: 1rem;
+        margin-top: 22vh; /* Finjuster den vertikale position */
+        max-width: 80vw;
+    }
+
+    .omMig2 {
+        font-size: 0.85rem; /* Gør brødteksten en smule mindre */
+        max-width: 80vw; /* Tillad lidt mere bredde hvis nødvendigt */
+
+    }
+
+    .migPic {
+        height: 18vh; /* Juster billedhøjden for at balancere layoutet */
+    }
+
+    .grid-migPic {
+        margin-top: 65vh; /* Juster billedets position ift. ny tekststørrelse */
+    }
+}
+
 </style>

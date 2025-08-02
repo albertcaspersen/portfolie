@@ -44,7 +44,7 @@ import Designstud from './components/Designstud.vue'
 
 .letstalk {
   color: #0300c7;
-  font-family: 'Panchang-Regular', 'Arial', sans-serif;
+  font-family: 'Panchang', 'Arial', sans-serif;
   font-weight: 600;
   font-size: 4rem;
   margin-top: 30vh;
@@ -62,7 +62,7 @@ import Designstud from './components/Designstud.vue'
 }
 
 .projecttekst {
-  font-family: 'Panchang-Regular', 'Arial', sans-serif;
+  font-family: 'Panchang', 'Arial', sans-serif;
   color: #0300c7;
   margin-top: 28vh;
   margin-left: 1vw;
@@ -71,7 +71,7 @@ import Designstud from './components/Designstud.vue'
 
 .info {
   color: #0300c7;
-  font-family: 'Panchang-Regular', 'Arial', sans-serif;
+  font-family: 'Panchang', 'Arial', sans-serif;
   font-size: 1rem;
   margin-top: 15vh;
   font-weight: 200;
@@ -96,5 +96,36 @@ import Designstud from './components/Designstud.vue'
     grid-column: 1/13; /* fylder hele bredden på mobil */
     justify-self: end;
   }
+
 }
+
+@media (max-width: 420px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .projecttekst {
+    font-family: 'Panchang', 'Arial', sans-serif;
+    color: #0300c7;
+    margin-top: 18vh;
+    margin-left: 1vw;
+    font-size: 1.3rem;
+  }
+
+  .letstalk {
+    color: #0300c7;
+    font-family: 'Panchang', 'Arial', sans-serif;
+    font-weight: 600;
+    font-size: 3rem;
+    margin-top: 22vh;
+    margin-left: 1vw;
+
+  }
+
+}
+
+
+
+
 </style>

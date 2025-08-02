@@ -52,7 +52,7 @@ import { isDarkMode } from '../themeState.js';
     align-items: end;
     position: absolute; /* Behøver måske ikke at være absolute længere? */
     top: 1.4vh;          /* Prøv med en fast værdi */
-    right: -1.7vw;         /* Prøv med en fast værdi */
+    right: -2vw;         /* Prøv med en fast værdi */
     grid-column: 9 / 13; /* Spænder over de sidste kolonner */
     grid-row: 1;
     
