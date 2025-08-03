@@ -171,4 +171,20 @@ html, body {
   pointer-events: none; /* Skal ikke kunne klikkes på */
   opacity: 0; /* Starter usynlig */
 }
+
+
+
+
+
+@media (max-width: 420px) {
+
+
+  html, body {
+
+    overscroll-behavior-y: contain;
+  }
+  
+
+
+}
 </style>
