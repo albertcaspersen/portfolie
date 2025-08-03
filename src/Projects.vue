@@ -548,7 +548,8 @@ const onLeave = (el, done) => {
 .while-in-battle .long-description-2 { grid-row: 4; grid-column: 9 / span 4; margin-top: 45vh; max-width: 30vw;}
 .while-in-battle .long-description-3 { grid-row: 5; grid-column: 9 / span 4; margin-top: 99vh; max-width: 30vw; }
 
-
+.having-some-fun-with-perlin-noise .long-description {grid-row: 2; grid-column: 9 / span 4; max-width: 30vw;}
+.having-some-fun-with-perlin-noise .long-description-2 {grid-row: 4; grid-column: 9 / span 4; max-width: 30vw; margin-top: 35vh;}
 
     }
 

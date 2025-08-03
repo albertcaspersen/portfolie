@@ -108,7 +108,7 @@ import Designstud from './components/Designstud.vue'
   .projecttekst {
     font-family: 'Panchang', 'Arial', sans-serif;
     color: #0300c7;
-    margin-top: 18vh;
+    margin-top: 15vh;
     margin-left: 1vw;
     font-size: 1.3rem;
   }
@@ -118,7 +118,7 @@ import Designstud from './components/Designstud.vue'
     font-family: 'Panchang', 'Arial', sans-serif;
     font-weight: 600;
     font-size: 3rem;
-    margin-top: 22vh;
+    margin-top: 19vh;
     margin-left: 1vw;
 
   }
