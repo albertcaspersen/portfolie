@@ -474,7 +474,7 @@ onBeforeUnmount(() => {
     }
 
     .migPic {
-        height: 18vh; /* Juster billedhøjden for at balancere layoutet */
+        height: 22vh; /* Juster billedhøjden for at balancere layoutet */
     }
 
     .grid-migPic {
