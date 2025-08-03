@@ -60,12 +60,14 @@ watch(isDarkMode, (isDark) => {
 
 
 // --- START: Din p5.js-logik (Uændret) ---
-// --- START: Opdateret p5.js-logik ---
-// --- START: Den endelige p5.js-logik ---
+// --- START: Den endelige og mest robuste p5.js-logik ---
 onMounted(() => {
   const sketch = (p) => {
     let particles = [];
     const numParticles = 130;
+    
+    // NYT: Variabel til at holde styr på vores debounce-timer
+    let resizeTimeout;
 
     class Particle {
       // ... Din Particle-klasse er uændret ...
@@ -118,11 +120,17 @@ onMounted(() => {
       }
     };
 
-    // OPDATERET: Den nye, simple resize-funktion
+    // OPDATERET: Den endelige "debounce" resize-funktion
     p.windowResized = () => {
-      // Denne linje justerer lærredets størrelse, men sletter ikke indholdet.
-      // Det skaber en flydende overgang i stedet for en hård opdatering.
-      p.resizeCanvas(p.windowWidth, p.windowHeight);
+      // 1. Ryd den gamle timer, hvis den findes.
+      // Dette forhindrer funktionen i at køre, hvis brugeren stadig scroller.
+      clearTimeout(resizeTimeout);
+      
+      // 2. Start en ny timer. Koden indeni vil først køre efter 150ms...
+      resizeTimeout = setTimeout(() => {
+        // ...og kun HVIS der ikke er kommet en ny resize-hændelse i mellemtiden.
+        p.resizeCanvas(p.windowWidth, p.windowHeight);
+      }, 150); // En forsinkelse på 150ms er typisk nok til at browser-animationen er færdig.
     };
   };
 
@@ -132,6 +140,7 @@ onMounted(() => {
     console.error('p5.js library not found on window object.');
   }
 });
+// --- SLUT: Den endelige og mest robuste p5.js-logik ---
 // --- SLUT: Den endelige p5.js-logik ---
 // --- SLUT: Opdateret p5.js-logik ---
 
