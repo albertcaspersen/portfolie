@@ -410,10 +410,31 @@ const onLeave = (el, done) => {
     border-radius: 8px;
 }
 
+
 .back-button-container {
     text-align: center;
     padding: 2rem 0 4rem 0;
 }
+
+.long-description { 
+
+    font-size: 0.2rem;
+}
+.long-description-2{ 
+
+    font-size: 0.2rem;
+}
+
+.long-description-3{ 
+
+    font-size: 0.2rem;
+}
+
+.long-description-4 { 
+
+    font-size: 0.2rem;
+}
+
 
 .details-grid-content button {
     display: inline-block; padding: 12px 25px; background-color: #FFFFFF; color: #030765;
