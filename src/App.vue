@@ -60,12 +60,18 @@ watch(isDarkMode, (isDark) => {
 
 
 // --- START: Din p5.js-logik (Uændret) ---
+// --- START: Opdateret p5.js-logik ---
 onMounted(() => {
   const sketch = (p) => {
     let particles = [];
     const numParticles = 130;
+    
+    // NYT: Variabler til at gemme den seneste størrelse
+    let lastWidth;
+    let lastHeight;
 
     class Particle {
+      // ... Din Particle-klasse er uændret ...
       constructor() {
         this.pos = p.createVector(p.random(p.width), p.random(p.height));
         this.vel = p.createVector(0, 0);
@@ -103,6 +109,10 @@ onMounted(() => {
         particles[i] = new Particle();
       }
       p.background(bgColor.value.r, bgColor.value.g, bgColor.value.b);
+      
+      // NYT: Gem den indledende størrelse
+      lastWidth = p.windowWidth;
+      lastHeight = p.windowHeight;
     };
 
     p.draw = () => {
@@ -115,8 +125,26 @@ onMounted(() => {
       }
     };
 
+    // OPDATERET: Den "smarte" resize-funktion
     p.windowResized = () => {
-      p.resizeCanvas(p.windowWidth, p.windowHeight);
+      // Tjek, hvor meget størrelsen har ændret sig
+      const heightChange = Math.abs(p.windowHeight - lastHeight);
+      
+      // En browsers adresselinje er typisk under 150 pixels høj.
+      // Vi sætter en tærskel for at ignorere disse små ændringer.
+      const threshold = 150;
+
+      // Opdater kun canvas, hvis ændringen i højden er markant.
+      if (heightChange > threshold) {
+        p.resizeCanvas(p.windowWidth, p.windowHeight);
+        
+        // Opdater den sidst kendte størrelse
+        lastWidth = p.windowWidth;
+        lastHeight = p.windowHeight;
+        
+        // Gentegn baggrunden med det samme for at undgå flimmer
+        p.background(bgColor.value.r, bgColor.value.g, bgColor.value.b);
+      }
     };
   };
 
@@ -126,6 +154,7 @@ onMounted(() => {
     console.error('p5.js library not found on window object.');
   }
 });
+// --- SLUT: Opdateret p5.js-logik ---
 
 onUnmounted(() => {
   if (p5Instance) {
