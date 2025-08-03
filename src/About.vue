@@ -430,8 +430,8 @@ onBeforeUnmount(() => {
 
     .grid-migPic { 
         grid-column: 2 / 13; 
-        grid-row: 5; 
-        margin-top: 61vh;
+        grid-row: 6;
+        margin-top: 2vh;
         display: flex;
         padding: 0px;
     }
@@ -478,8 +478,9 @@ onBeforeUnmount(() => {
     }
 
     .grid-migPic {
-        margin-top: 60vh; /* Juster billedets position ift. ny tekststørrelse */
+        margin-top: 0vh; /* Juster billedets position ift. ny tekststørrelse */
         padding-top: 5vh;
+        grid-row: 6;
     }
 }
 
