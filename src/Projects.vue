@@ -101,8 +101,8 @@ const projects = ref([
         title: "'While in battle'",
         description: "This was part of an exam...",
         longDescription: "This poster was part of an exam assignment, where we were tasked with designing a poster for the dance performance 'while in battle I’m free, never free to rest.'",
-        longDescription2: "This exam poster was created for the dance performance 'while in battle I’m free, never free to rest', which explored ethnicity, conflict, love, and understanding. I chose a typeface that contrasts structured forms with more fluid shapes.",
-        longDescription3: "I prompted an image of arms that strongly conveyed conflict, diversity, and love, which fit perfectly into the composition of the poster.",
+        longDescription2: "The performance 'while in battle I’m free, never free to rest', explores ethnicity, conflict, love, and understanding. I chose a typeface that contrasts structured forms with more fluid shapes.",
+        longDescription3: "I prompted an image of arms that strongly conveyed conflict, diversity, and love, which really fit perfectly into the composition of the poster.",
         media: new URL('./assets/sliderContent/whileInBattle.jpg', import.meta.url).href,
         mediaType: 'image'
     },
@@ -416,24 +416,7 @@ const onLeave = (el, done) => {
     padding: 2rem 0 4rem 0;
 }
 
-.long-description { 
 
-    font-size: 0.2rem;
-}
-.long-description-2{ 
-
-    font-size: 0.2rem;
-}
-
-.long-description-3{ 
-
-    font-size: 0.2rem;
-}
-
-.long-description-4 { 
-
-    font-size: 0.2rem;
-}
 
 
 .details-grid-content button {
@@ -526,10 +509,50 @@ const onLeave = (el, done) => {
     }
     .details-grid-content > * { 
         grid-column: 1 / -1 !important; 
-        grid-row: auto !important; /* Vigtigt at overskrive grid-row også */
-        margin-top: 2vh !important;
+        grid-row: auto;
+        margin-top: 0vh !important;
         margin-bottom: 2vh !important;
         max-width: none !important;
     }
+
+
+
+    @media (max-width: 420px) {
+
+
+        .long-description { 
+
+            font-size: 0.7rem;
+        }
+        .long-description-2{ 
+        
+            font-size: 0.7rem;
+        }
+        
+        .long-description-3{ 
+        
+            font-size: 0.7rem;
+        }
+        
+        .long-description-4{ 
+        
+            font-size: 0.7rem;
+        }
+
+        .ocean-storm-animation .gallery-item-ocean-storm-animation-0 { grid-row: 4; grid-column: 7 / span 4; margin-bottom: 5vh; }
+.ocean-storm-animation .gallery-item-ocean-storm-animation-1 { grid-row: 6; grid-column: 3 / span 4; margin-top: 5vh;}
+
+
+
+.while-in-battle .long-description { grid-row: 2; grid-column: 9 / span 4; max-width: 30vw;}
+.while-in-battle .long-description-2 { grid-row: 4; grid-column: 9 / span 4; margin-top: 45vh; max-width: 30vw;}
+.while-in-battle .long-description-3 { grid-row: 5; grid-column: 9 / span 4; margin-top: 99vh; max-width: 30vw; }
+
+
+
+    }
+
+
+
 }
 </style>
