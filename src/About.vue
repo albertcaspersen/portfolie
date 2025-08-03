@@ -451,6 +451,14 @@ onBeforeUnmount(() => {
  * der er 420px eller smallere, som f.eks. iPhone 15 (393px).
 */
 @media (max-width: 420px) {
+
+
+    body {
+        overflow-x: hidden;
+    }
+
+
+
     .Albert, .Valdemar {
         /* Lidt mindre font for at sikre, det passer på smalle skærme */
         font-size: 3.1rem; 

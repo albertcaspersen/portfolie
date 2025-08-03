@@ -194,6 +194,7 @@ html, body {
   html, body {
 
     overscroll-behavior-y: contain;
+    overflow-x: hidden;
   }
   
   #p5-background {
