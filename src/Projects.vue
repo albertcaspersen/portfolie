@@ -461,7 +461,7 @@ const onLeave = (el, done) => {
         flex-direction: column;
         gap: 2rem;
         padding: 80px 1rem 2rem 1rem; /* Plads til navbar i toppen */
-        background-color: #00001a; /* Mørk baggrund til mobil */
+        background-color: #00001a9f; /* Mørk baggrund til mobil */
         color: #FFFFFF;
     }
 
@@ -550,6 +550,10 @@ const onLeave = (el, done) => {
 
 .having-some-fun-with-perlin-noise .long-description {grid-row: 2; grid-column: 9 / span 4; max-width: 30vw;}
 .having-some-fun-with-perlin-noise .long-description-2 {grid-row: 4; grid-column: 9 / span 4; max-width: 30vw; margin-top: 35vh;}
+
+.projection-mapping .gallery-item-projection-mapping-2 {grid-row: 4; grid-column: 8 / span 4; max-width: 40vw; margin-top: 40vh;}
+
+
 
     }
 
