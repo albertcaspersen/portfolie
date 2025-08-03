@@ -196,6 +196,13 @@ html, body {
     overscroll-behavior-y: contain;
   }
   
+  #p5-background {
+    
+
+    height: 150%;
+
+  }
+  
 
 
 }
