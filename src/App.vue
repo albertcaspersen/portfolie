@@ -61,14 +61,11 @@ watch(isDarkMode, (isDark) => {
 
 // --- START: Din p5.js-logik (Uændret) ---
 // --- START: Opdateret p5.js-logik ---
+// --- START: Den endelige p5.js-logik ---
 onMounted(() => {
   const sketch = (p) => {
     let particles = [];
     const numParticles = 130;
-    
-    // NYT: Variabler til at gemme den seneste størrelse
-    let lastWidth;
-    let lastHeight;
 
     class Particle {
       // ... Din Particle-klasse er uændret ...
@@ -109,10 +106,6 @@ onMounted(() => {
         particles[i] = new Particle();
       }
       p.background(bgColor.value.r, bgColor.value.g, bgColor.value.b);
-      
-      // NYT: Gem den indledende størrelse
-      lastWidth = p.windowWidth;
-      lastHeight = p.windowHeight;
     };
 
     p.draw = () => {
@@ -125,26 +118,11 @@ onMounted(() => {
       }
     };
 
-    // OPDATERET: Den "smarte" resize-funktion
+    // OPDATERET: Den nye, simple resize-funktion
     p.windowResized = () => {
-      // Tjek, hvor meget størrelsen har ændret sig
-      const heightChange = Math.abs(p.windowHeight - lastHeight);
-      
-      // En browsers adresselinje er typisk under 150 pixels høj.
-      // Vi sætter en tærskel for at ignorere disse små ændringer.
-      const threshold = 150;
-
-      // Opdater kun canvas, hvis ændringen i højden er markant.
-      if (heightChange > threshold) {
-        p.resizeCanvas(p.windowWidth, p.windowHeight);
-        
-        // Opdater den sidst kendte størrelse
-        lastWidth = p.windowWidth;
-        lastHeight = p.windowHeight;
-        
-        // Gentegn baggrunden med det samme for at undgå flimmer
-        p.background(bgColor.value.r, bgColor.value.g, bgColor.value.b);
-      }
+      // Denne linje justerer lærredets størrelse, men sletter ikke indholdet.
+      // Det skaber en flydende overgang i stedet for en hård opdatering.
+      p.resizeCanvas(p.windowWidth, p.windowHeight);
     };
   };
 
@@ -154,6 +132,7 @@ onMounted(() => {
     console.error('p5.js library not found on window object.');
   }
 });
+// --- SLUT: Den endelige p5.js-logik ---
 // --- SLUT: Opdateret p5.js-logik ---
 
 onUnmounted(() => {
