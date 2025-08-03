@@ -135,45 +135,55 @@ onMounted(() => {
   }
 });
 // --- SLUT: Den endelige, CSS-baserede p5.js-logik ---
+// --- SLUT: Den endelige og mest robuste p5.js-logik ---
+// --- SLUT: Den endelige p5.js-logik ---
+// --- SLUT: Opdateret p5.js-logik ---
+
+onUnmounted(() => {
+  if (p5Instance) {
+    p5Instance.remove();
+    p5Instance = null;
+  }
+});
 // --- SLUT: Din p5.js-logik ---
 </script>
 
-/* Din eksisterende CSS er uændret */
 
 <style>
+/* Din eksisterende CSS er uændret */
 html, body {
   margin: 0;
   padding: 0;
   background-color: transparent;
-  overflow: hidden; /* OPDATERET: Både x og y skal være hidden */
-  /* CSS til at forhindre "pull-to-refresh" - stadig vigtig */
+  overflow-x: hidden;
+  /* Forhindrer "pull-to-refresh" på hele siden */
   overscroll-behavior-y: contain;
 }
 
-#p5-background, #p5-background canvas {
+#p5-background {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  /* NYT & VIGTIGT: Brug 'svh' til at håndtere mobil browser-UI */
-  height: 100svh;
+  width: 100%;
+  height: 100%;
   z-index: -2;
-  /* Forhindrer touch-handlinger - stadig vigtig */
+  overflow: hidden;
   touch-action: none;
 }
 
-/* Din fader-CSS er uændret */
+/* DEN NYE CSS FOR FADEREN */
 #theme-fader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #030765;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0;
+  background-color: #030765; /* Starter med en default farve */
+  z-index: 9999; /* Skal være over ALT andet */
+  pointer-events: none; /* Skal ikke kunne klikkes på */
+  opacity: 0; /* Starter usynlig */
 }
+
 
 
 
