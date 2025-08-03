@@ -61,13 +61,11 @@ watch(isDarkMode, (isDark) => {
 
 // --- START: Din p5.js-logik (Uændret) ---
 // --- START: Den endelige og mest robuste p5.js-logik ---
+// --- START: Den endelige, CSS-baserede p5.js-logik ---
 onMounted(() => {
   const sketch = (p) => {
     let particles = [];
     const numParticles = 130;
-    
-    // NYT: Variabel til at holde styr på vores debounce-timer
-    let resizeTimeout;
 
     class Particle {
       // ... Din Particle-klasse er uændret ...
@@ -99,10 +97,15 @@ onMounted(() => {
     }
 
     p.setup = () => {
-      const canvas = p.createCanvas(p.windowWidth, p.windowHeight);
+      // Brug de faste dimensioner fra CSS
+      const container = document.getElementById('p5-background');
+      const canvas = p.createCanvas(container.offsetWidth, container.offsetHeight);
       canvas.parent('p5-background');
-      canvas.style('z-index', '0');
-      canvas.style('position', 'fixed');
+      
+      // Fjern p5's egen inline styling, så vores CSS kan styre 100%
+      canvas.style('position', ''); 
+      canvas.style('z-index', '');
+
       p.smooth(8);
       for (let i = 0; i < numParticles; i++) {
         particles[i] = new Particle();
@@ -120,18 +123,9 @@ onMounted(() => {
       }
     };
 
-    // OPDATERET: Den endelige "debounce" resize-funktion
-    p.windowResized = () => {
-      // 1. Ryd den gamle timer, hvis den findes.
-      // Dette forhindrer funktionen i at køre, hvis brugeren stadig scroller.
-      clearTimeout(resizeTimeout);
-      
-      // 2. Start en ny timer. Koden indeni vil først køre efter 150ms...
-      resizeTimeout = setTimeout(() => {
-        // ...og kun HVIS der ikke er kommet en ny resize-hændelse i mellemtiden.
-        p.resizeCanvas(p.windowWidth, p.windowHeight);
-      }, 150); // En forsinkelse på 150ms er typisk nok til at browser-animationen er færdig.
-    };
+    // VIGTIGT: p.windowResized er FJERNET HELT
+    // Vi lader CSS håndtere alt, hvad der har med størrelse at gøre.
+
   };
 
   if (window.p5) {
@@ -140,55 +134,46 @@ onMounted(() => {
     console.error('p5.js library not found on window object.');
   }
 });
-// --- SLUT: Den endelige og mest robuste p5.js-logik ---
-// --- SLUT: Den endelige p5.js-logik ---
-// --- SLUT: Opdateret p5.js-logik ---
-
-onUnmounted(() => {
-  if (p5Instance) {
-    p5Instance.remove();
-    p5Instance = null;
-  }
-});
+// --- SLUT: Den endelige, CSS-baserede p5.js-logik ---
 // --- SLUT: Din p5.js-logik ---
 </script>
 
+/* Din eksisterende CSS er uændret */
 
 <style>
-/* Din eksisterende CSS er uændret */
 html, body {
   margin: 0;
   padding: 0;
   background-color: transparent;
-  overflow-x: hidden;
-  /* Forhindrer "pull-to-refresh" på hele siden */
+  overflow: hidden; /* OPDATERET: Både x og y skal være hidden */
+  /* CSS til at forhindre "pull-to-refresh" - stadig vigtig */
   overscroll-behavior-y: contain;
 }
 
-#p5-background {
+#p5-background, #p5-background canvas {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  /* NYT & VIGTIGT: Brug 'svh' til at håndtere mobil browser-UI */
+  height: 100svh;
   z-index: -2;
-  overflow: hidden;
+  /* Forhindrer touch-handlinger - stadig vigtig */
   touch-action: none;
 }
 
-/* DEN NYE CSS FOR FADEREN */
+/* Din fader-CSS er uændret */
 #theme-fader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #030765; /* Starter med en default farve */
-  z-index: 9999; /* Skal være over ALT andet */
-  pointer-events: none; /* Skal ikke kunne klikkes på */
-  opacity: 0; /* Starter usynlig */
+  background-color: #030765;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
 }
-
 
 
 
