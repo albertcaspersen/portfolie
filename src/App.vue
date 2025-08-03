@@ -144,6 +144,8 @@ html, body {
   padding: 0;
   background-color: transparent;
   overflow-x: hidden;
+  /* Forhindrer "pull-to-refresh" på hele siden */
+  overscroll-behavior-y: contain;
 }
 
 #p5-background {
@@ -154,6 +156,7 @@ html, body {
   height: 100%;
   z-index: -2;
   overflow: hidden;
+  touch-action: none;
 }
 
 /* DEN NYE CSS FOR FADEREN */
