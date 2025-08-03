@@ -463,7 +463,7 @@ onBeforeUnmount(() => {
 
     .omMig {
         font-size: 1rem;
-        margin-top: 22vh; /* Finjuster den vertikale position */
+        margin-top: 18vh; /* Finjuster den vertikale position */
         max-width: 80vw;
     }
 
