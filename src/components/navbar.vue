@@ -1,5 +1,3 @@
-<!-- Fil: Navbar.vue -->
-
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { isDarkMode } from '../themeState.js';
@@ -9,73 +7,63 @@ import gsap from 'gsap';
 const isMenuOpen = ref(false);
 const navContainerRef = ref(null);
 const navLinksRef = ref([]);
+const linkyRef = ref(null); // <-- 1. Opret en ny ref til linky-sektionen
 
 // --- GSAP Tidslinje & Tilstand ---
 let timeline = null;
-// En simpel variabel til at vide, om vi er på mobil.
 let isMobileView = false;
 
-// Altid-aktiv funktion til at skifte menuen
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
 }
 
-// Kør, når komponenten er monteret
 onMounted(() => {
-  // Funktion til at bygge mobil-animationen
   function setupMobileAnimation() {
-    // Sørg for, at gamle tidslinjer er dræbt
     if (timeline) timeline.kill();
     
-    // Opret en ny, pauset tidslinje
     timeline = gsap.timeline({
       paused: true,
-      // Når menuen er helt lukket, skjules containeren rent
       onReverseComplete: () => {
         gsap.set(navContainerRef.value, { display: 'none' });
       }
     });
 
-    // Definer animationens trin
+    // Saml alle elementer, der skal animeres
+    const elementsToAnimate = [...navLinksRef.value, linkyRef.value]; // <-- 2. Kombiner nav-links og linky
+
     timeline
       .to(navContainerRef.value, {
         clipPath: 'circle(150% at top right)',
         duration: 0.6,
         ease: 'power3.inOut'
       })
-      .from(navLinksRef.value, {
+      // Animer både navLinks og linkyRef sammen
+      .from(elementsToAnimate, { // <-- 3. Brug den kombinerede liste her
         opacity: 0,
         y: 30,
         duration: 0.4,
-        stagger: 0.1,
+        stagger: 0.1, // Stagger vil virke på tværs af alle elementer i listen
         ease: 'power2.out'
       }, "-=0.4");
   }
 
-  // Brug matchMedia KUN til at rydde op og sætte tilstand
   gsap.matchMedia().add("(max-width: 600px)", () => {
-    // VI ER PÅ MOBIL
     isMobileView = true;
-    setupMobileAnimation(); // Byg animationen
+    setupMobileAnimation();
 
-    // Cleanup-funktion: Køres når vi går til desktop
     return () => {
       isMobileView = false;
-      // Nulstil menuen, hvis den var åben
       isMenuOpen.value = false; 
       gsap.set(navContainerRef.value, { clearProps: 'all' });
       gsap.set(navLinksRef.value, { clearProps: 'all' });
+      gsap.set(linkyRef.value, { clearProps: 'all' }); // Sørg for at rydde op her også
     };
   });
 });
 
-// WATCH ER NU UDENFOR MATCHMEDIA - DEN KØRER ALTID
-// Dette er den afgørende rettelse.
 watch(isMenuOpen, (isOpen) => {
-  // Reager kun, hvis vi er på mobil og tidslinjen eksisterer
   if (isMobileView && timeline) {
     if (isOpen) {
-      // Gør containeren synlig, LIGE FØR animationen starter
       gsap.set(navContainerRef.value, { display: 'flex' });
       timeline.play();
     } else {
@@ -83,11 +71,8 @@ watch(isMenuOpen, (isOpen) => {
     }
   }
 });
-
 </script>
-
 <template>
-  <!-- Template er uændret og korrekt -->
   <nav class="grid-navbar-nav" :class="{ 'dark-mode': isDarkMode, 'menu-open': isMenuOpen }">
     <button class="burger-menu" @click="toggleMenu" :aria-expanded="isMenuOpen" aria-label="Toggle navigation">
       <div class="line line1"></div>
@@ -102,6 +87,19 @@ watch(isMenuOpen, (isOpen) => {
         @click="isMenuOpen = false">
         {{ link.text }}
       </router-link>
+      
+      <!-- Tilføj ref="linkyRef" til h2-elementet -->
+      <h2 class="linky" ref="linkyRef">
+        <span style="font-weight: 700;">Mail</span><br>
+         <a href="mailto:albertcaspersen@hotmail.com" style="text-decoration: none; color: #0300c7;">albertcaspersen@hotmail.com</a><br><br>
+  
+        <span style="font-weight: 700;">Socials</span><br>
+        <a href="https://www.instagram.com/albert_caspersen/" style="text-decoration: none; color: #0300c7;">Instagram</a><br>
+        <a href="https://www.facebook.com/albert.caspersen?locale=da_DK" style="text-decoration: none; color: #0300c7;">Facebook</a><br><br>
+  
+        <span style="font-weight: 700;">Phone</span><br>
+        50557144
+      </h2>
     </div>
   </nav>
 </template>
@@ -121,7 +119,7 @@ watch(isMenuOpen, (isOpen) => {
 .grid-navbar-nav.menu-open .line3 { transform: rotate(-45deg); } 
 
 /* --- Links Styling --- */
-.nav-link { text-decoration: none; color: #0300c7; font-family: 'Panchang', 'Arial', sans-serif; font-size: 3.5rem; font-weight: 600; margin: 1.5rem 0; top: 10vh; }
+.nav-link { text-decoration: none; color: #0300c7; font-family: 'Panchang', 'Arial', sans-serif; font-size: 3.5rem; font-weight: 600; margin: 1.5rem 0; position: relative; top: 10vh; }
 .router-link-active { text-decoration: underline; }
 .grid-navbar-nav.dark-mode .nav-link { color: #FFFFFF; }
 
@@ -129,7 +127,6 @@ watch(isMenuOpen, (isOpen) => {
 .nav-links-container {
   display: none;
   flex-direction: column;
-  justify-content: center;
   align-items: left;
   text-align: left;
   position: fixed;
@@ -147,13 +144,24 @@ watch(isMenuOpen, (isOpen) => {
   background-color: #0300c7;
 }
 
+.linky {
+  font-size: 0.9rem;
+  color: #0300c7;
+  font-weight: 100;
+  position: absolute;
+  bottom: 20vh;
+  left: 8.7vw;
+}
+
 /* --- DESKTOP STYLES --- */
 @media (min-width: 601px) {
   .burger-menu {
     display: none;
 
   }
-  
+  .grid-navbar-nav.dark-mode .nav-links-container {
+    background-color: transparent;
+  }
   .nav-links-container {
     display: flex; /* Vises som standard på desktop */
     flex-direction: row;
@@ -168,6 +176,8 @@ watch(isMenuOpen, (isOpen) => {
     font-size: 1.2rem;
     margin: 0;
     margin-right: 5em;
+    top: 0vh;
+    right: -3.2vw;
   }
 }
 </style>
