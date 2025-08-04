@@ -48,7 +48,7 @@ import { isDarkMode } from '../themeState.js';
     padding-left: 5%;
     /*font-family: 'Panchang-Regular', 'Arial', sans-serif;*/
     font-family: 'Panchang', 'Arial', sans-serif;
-    font-size: 1.15rem;
+    font-size: 0.91rem;
     margin-top: -3px;
     margin-left: -3px;
     grid-column: 1 / 8;

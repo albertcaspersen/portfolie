@@ -164,7 +164,7 @@ html, body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 120%;
   height: 100%;
   z-index: -2;
   overflow: hidden;
