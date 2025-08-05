@@ -30,6 +30,7 @@ import { isDarkMode } from '../themeState.js';
     grid-column: 1 / 5;
     grid-row: 1;
     transition: color 0.4s; /* Tilføjet for en blød overgang */
+    z-index: 3000;
 }
 
 /* 3. Definer stilen for dark mode */

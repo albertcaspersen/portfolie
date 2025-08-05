@@ -1,5 +1,7 @@
+<!-- Fil: Navbar.vue -->
+
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { isDarkMode } from '../themeState.js';
 import gsap from 'gsap';
 
@@ -7,64 +9,62 @@ import gsap from 'gsap';
 const isMenuOpen = ref(false);
 const navContainerRef = ref(null);
 const navLinksRef = ref([]);
-const linkyRef = ref(null); // <-- 1. Opret en ny ref til linky-sektionen
+const linkyRef = ref(null);
 
-// --- GSAP Tidslinje & Tilstand ---
+// --- GSAP Tidslinje ---
 let timeline = null;
-let isMobileView = false;
 
+// Funktion til at skifte menuen
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
 }
 
+// Kør, når komponenten er monteret
 onMounted(() => {
-  function setupMobileAnimation() {
-    if (timeline) timeline.kill();
-    
-    timeline = gsap.timeline({
-      paused: true,
-      onReverseComplete: () => {
-        gsap.set(navContainerRef.value, { display: 'none' });
-      }
-    });
-
-    // Saml alle elementer, der skal animeres
-    const elementsToAnimate = [...navLinksRef.value, linkyRef.value]; // <-- 2. Kombiner nav-links og linky
-
-    timeline
-      .to(navContainerRef.value, {
-        clipPath: 'circle(150% at top right)',
-        duration: 0.6,
-        ease: 'power3.inOut'
-      })
-      // Animer både navLinks og linkyRef sammen
-      .from(elementsToAnimate, { // <-- 3. Brug den kombinerede liste her
-        opacity: 0,
-        y: 30,
-        duration: 0.4,
-        stagger: 0.1, // Stagger vil virke på tværs af alle elementer i listen
-        ease: 'power2.out'
-      }, "-=0.4");
-  }
-
-  gsap.matchMedia().add("(max-width: 600px)", () => {
-    isMobileView = true;
-    setupMobileAnimation();
-
-    return () => {
-      isMobileView = false;
-      isMenuOpen.value = false; 
-      gsap.set(navContainerRef.value, { clearProps: 'all' });
-      gsap.set(navLinksRef.value, { clearProps: 'all' });
-      gsap.set(linkyRef.value, { clearProps: 'all' }); // Sørg for at rydde op her også
-    };
+  timeline = gsap.timeline({
+    paused: true,
+    onReverseComplete: () => {
+      // Skjuler containeren når animationen er færdig med at køre baglæns
+      gsap.set(navContainerRef.value, { display: 'none' });
+    }
   });
+
+  const linkyItems = gsap.utils.toArray(linkyRef.value.children);
+  const elementsToAnimate = [...navLinksRef.value, ...linkyItems];
+
+  timeline
+    .to(navContainerRef.value, {
+      clipPath: 'circle(150% at top right)',
+      duration: 0.6,
+      ease: 'power3.inOut'
+    })
+    .from(elementsToAnimate, {
+      opacity: 0,
+      y: 70,
+      duration: 0.4,
+      stagger: 0.11,
+      ease: 'power2.out'
+    }, "-=0.4");
 });
 
+// Ryd op når komponenten fjernes
+onUnmounted(() => {
+  if (timeline) {
+    timeline.kill();
+  }
+});
+
+// Reagerer på ændringer i isMenuOpen
 watch(isMenuOpen, (isOpen) => {
-  if (isMobileView && timeline) {
+  if (timeline) {
     if (isOpen) {
-      gsap.set(navContainerRef.value, { display: 'flex' });
+      // Check om vi er på desktop eller mobil
+      const isDesktop = window.innerWidth > 600;
+      if (isDesktop) {
+        gsap.set(navContainerRef.value, { display: 'grid' });
+      } else {
+        gsap.set(navContainerRef.value, { display: 'flex' });
+      }
       timeline.play();
     } else {
       timeline.reverse();
@@ -72,6 +72,7 @@ watch(isMenuOpen, (isOpen) => {
   }
 });
 </script>
+
 <template>
   <nav class="grid-navbar-nav" :class="{ 'dark-mode': isDarkMode, 'menu-open': isMenuOpen }">
     <button class="burger-menu" @click="toggleMenu" :aria-expanded="isMenuOpen" aria-label="Toggle navigation">
@@ -79,7 +80,9 @@ watch(isMenuOpen, (isOpen) => {
       <div class="line line2"></div>
       <div class="line line3"></div>
     </button>
+    
     <div class="nav-links-container" ref="navContainerRef">
+     
       <router-link
         v-for="link in [{to: '/about', text: 'About'}, {to: '/projects', text: 'Projects'}, {to: '/contact', text: 'Contact'}]"
         :key="link.to" :to="link.to" class="nav-link"
@@ -88,46 +91,101 @@ watch(isMenuOpen, (isOpen) => {
         {{ link.text }}
       </router-link>
       
-      <!-- Tilføj ref="linkyRef" til h2-elementet -->
-      <h2 class="linky" ref="linkyRef">
-        <span style="font-weight: 700;">Mail</span><br>
-         <a href="mailto:albertcaspersen@hotmail.com" style="text-decoration: none; color: #0300c7;">albertcaspersen@hotmail.com</a><br><br>
-  
-        <span style="font-weight: 700;">Socials</span><br>
-        <a href="https://www.instagram.com/albert_caspersen/" style="text-decoration: none; color: #0300c7;">Instagram</a><br>
-        <a href="https://www.facebook.com/albert.caspersen?locale=da_DK" style="text-decoration: none; color: #0300c7;">Facebook</a><br><br>
-  
-        <span style="font-weight: 700;">Phone</span><br>
-        50557144
-      </h2>
+      <div class="linky" ref="linkyRef">
+        <div><a href="mailto:albertcaspersen@hotmail.com">Mail</a></div>
+        <div class="spacer"></div>
+        <div><a href="https://www.instagram.com/albert_caspersen/">Instagram</a></div>
+        <div><a href="https://www.linkedin.com/in/albert-valdemar-caspersen-a9a433331/">Linkedin</a></div>
+        <div><a href="https://www.facebook.com/albert.caspersen?locale=da_DK">Facebook</a></div>
+        <div class="spacer"></div>
+      </div>
     </div>
   </nav>
 </template>
 
 <style scoped>
-/* Din CSS-kode er uændret og kan forblive præcis som i det forrige svar.
-   Den simplificerede @media-blok uden '!important' vil nu fungere korrekt.
-*/
+/* --- GENERELLE STYLES (MOBIL-FIRST) --- */
+.grid-navbar-nav {
+  grid-column: 11 / 13;
+  grid-row: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  top: -1vh;
+}
 
-/* --- Generel & Burger Styling --- */
-.grid-navbar-nav { grid-column: 11 / 13; grid-row: 1; display: flex; justify-content: flex-end; align-items: center; position: relative; top: -0vh;  }
-.burger-menu { display: flex; flex-direction: column; justify-content: space-around; width: 3rem; height: 2rem; background: transparent; border: none; cursor: pointer; padding: 0; z-index: 1001; }
-.line { width: 2rem; height: 0.25rem; background-color: #0300c7; border-radius: 10px; transition: all 0.3s linear; position: relative; transform-origin: 1px; top: -1vh; right: -0.6vw;}
-.grid-navbar-nav.dark-mode .line { background-color: #FFFFFF; }
-.grid-navbar-nav.menu-open .line1 { transform: rotate(45deg); }
-.grid-navbar-nav.menu-open .line2 { opacity: 0; transform: translateX(20px); }
-.grid-navbar-nav.menu-open .line3 { transform: rotate(-45deg); } 
-
-/* --- Links Styling --- */
-.nav-link { text-decoration: none; color: #0300c7; font-family: 'Panchang', 'Arial', sans-serif; font-size: 3.5rem; font-weight: 600; margin: 1.5rem 0; position: relative; top: 10vh; }
-.router-link-active { text-decoration: underline; }
-.grid-navbar-nav.dark-mode .nav-link { color: #FFFFFF; }
-
-/* --- GSAP-styret Nav Container --- */
-.nav-links-container {
-  display: none;
+.burger-menu {
+  grid-column: 11 / 13;
+  display: flex;
   flex-direction: column;
-  align-items: left;
+  justify-content: space-around;
+  width: 4.9rem;
+  align-items: center;
+  height: 2rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 1001;
+  background-color: transparent;
+  right: -2.6vw;
+  position: absolute;
+}
+
+.line {
+  width: 2rem;
+  height: 0.25rem;
+  background-color: #0300c7;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.grid-navbar-nav.dark-mode .line {
+  background-color: #FFFFFF;
+}
+
+.grid-navbar-nav.menu-open .line1 {
+  transform: rotate(45deg);
+}
+.grid-navbar-nav.menu-open .line2 {
+  opacity: 0;
+  transform: translateX(20px);
+}
+.grid-navbar-nav.menu-open .line3 {
+  transform: rotate(-45deg);
+}
+
+/* --- Links Styling (Mobil) --- */
+.nav-link {
+  text-decoration: none;
+  color: #0300c7;
+  font-family: 'Panchang', 'Arial', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin: 1.5rem 0; /* Lille margin mellem linkene */
+  padding: 0 0 0 5vw; /* Kun left padding */
+  line-height: 1; /* Normal line-height */
+  position: relative;
+  top: -17vh;
+}
+
+.router-link-active {
+  text-decoration: underline;
+}
+
+.grid-navbar-nav.dark-mode .nav-link {
+  color: #FFFFFF;
+}
+
+/* --- GSAP-styret Nav Container (Mobil) --- */
+.nav-links-container {
+  display: none; /* Skjult som standard, styres af GSAP */
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center; /* Centrerer indholdet vertikalt */
   text-align: left;
   position: fixed;
   top: 0;
@@ -137,47 +195,112 @@ watch(isMenuOpen, (isOpen) => {
   z-index: 1000;
   background-color: rgb(236, 236, 236);
   clip-path: circle(0% at top right);
-  
 }
 
 .grid-navbar-nav.dark-mode .nav-links-container {
   background-color: #0300c7;
 }
 
+/* --- Styling for Linky-sektionen (Mobil) --- */
 .linky {
+  display: flex;
+  flex-direction: column;
   font-size: 0.9rem;
-  color: #0300c7;
   font-weight: 100;
   position: absolute;
-  bottom: 20vh;
-  left: 8.7vw;
+  bottom: 10vh;
+  left: 5vw;
+  padding-left: 0.18rem;
+  width: 100%;
 }
 
-/* --- DESKTOP STYLES --- */
+.linky div {
+  line-height: 1.9;
+}
+.linky a {
+  color: #0300c7;
+  text-decoration: none;
+}
+.linky .spacer {
+  height: 1.5rem;
+}
+.grid-navbar-nav.dark-mode .linky,
+.grid-navbar-nav.dark-mode .linky a {
+  color: #FFFFFF;
+}
+
+/* --- DESKTOP JUSTERINGER --- */
 @media (min-width: 601px) {
+
+
+
+  .grid-navbar-nav {
+    grid-column: 11 / 13;
+    grid-row: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    top: -0vh;
+  }
+  
   .burger-menu {
-    display: none;
-
-  }
-  .grid-navbar-nav.dark-mode .nav-links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 4.9rem;
+    align-items: center;
+    height: 2rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
     background-color: transparent;
+    right: 3.98vw;
+    position: absolute;
   }
+
+
+
+
+  /* Anvend dit ønskede grid på containeren */
   .nav-links-container {
-    display: flex; /* Vises som standard på desktop */
-    flex-direction: row;
-    position: static;
-    height: auto;
-    width: auto;
-    background-color: transparent;
-    clip-path: none;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(4, auto); /* Ændret til 4 rækker for bedre kontrol */
+    gap: 0; /* Fjernet gap mellem grid-elementer */
+    position: fixed;
+    padding: 5vh 0; /* Tilføjet top/bottom padding */
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(236, 236, 236);
+    align-items: start;
+    align-content: center; /* Centrerer grid-indholdet vertikalt */
+    box-sizing: border-box;
   }
 
+  /* Placer hvert nav-link på en ny række i grid'et */
   .nav-link {
-    font-size: 1.2rem;
+    grid-column: 3 / 13;
+    font-size: 6rem;
     margin: 0;
-    margin-right: 5em;
-    top: 0vh;
-    right: -3.2vw;
+    padding: 0.2rem 0; /* Lille padding for at give minimal afstand */
+    top: 0;
+    align-self: start;
+    line-height: 1.9; /* Justeret line-height for tættere spacing */
+  }
+
+  /* Placer linky-sektionen i bunden */
+  .linky {
+    grid-column: 3 / 13;
+    grid-row: 4; /* Sidste række */
+    font-size: 1.2rem;
+    align-self: end;
+    padding-bottom: 5vh;
+    position: static; /* Ændret fra absolute til static */
+    
   }
 }
 </style>
