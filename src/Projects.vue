@@ -466,7 +466,7 @@ const onLeave = (el, done) => {
     }
 
     .mobile-project-card {
-        background-color: #030765; /* Lidt lysere end baggrunden */
+        background-color: #030665; /* Lidt lysere end baggrunden */
         border-radius: 12px;
         overflow: hidden;
         cursor: pointer;

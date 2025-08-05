@@ -9,7 +9,7 @@ import Designstud from './components/Designstud.vue'
     <Designstud />
 
     <h1 class="grid-item grid-talktext letstalk">
-      Lets create together!
+      Collaboration fuels my creativity – I love joining forces to turn bold ideas into reality. If you’re ready to build something exciting together, let’s connect. I’m currently looking for an internship this fall 2025.
     </h1>
     <p class="grid-item grid-gotaproject projecttekst">Got a project in mind?</p>
 
@@ -45,28 +45,29 @@ import Designstud from './components/Designstud.vue'
 .letstalk {
   color: #0300c7;
   font-family: 'Panchang', 'Arial', sans-serif;
-  font-weight: 600;
-  font-size: 4rem;
+  font-weight: 400;
+  font-size: 1rem;
   margin-top: 30vh;
-  margin-left: 1vw;
+  margin-left: 3.5vw;
 }
 
 .grid-talktext {
-  grid-column: 1/12;
-  grid-row: 4;
+  grid-column: 5/9;
+  grid-row: 2;
 }
 
 .grid-gotaproject {
-  grid-column: 1/12;
-  grid-row: 4;
+  grid-column: 5/12;
+  grid-row: 2;
 }
 
 .projecttekst {
   font-family: 'Panchang', 'Arial', sans-serif;
   color: #0300c7;
-  margin-top: 28vh;
-  margin-left: 1vw;
+  margin-top: 25vh;
+  margin-left: 3.5vw;
   font-size: 1.3rem;
+  font-weight: 600;
 }
 
 .info {
@@ -110,14 +111,25 @@ import Designstud from './components/Designstud.vue'
     color: #0300c7;
     margin-top: 15vh;
     margin-left: 1vw;
-    font-size: 1.3rem;
+    font-size: 1.0rem;
   }
+
+  .grid-talktext {
+    grid-column: 2/12;
+    grid-row: 2;
+  }
+
+  .grid-gotaproject {
+    grid-column: 2/12;
+    grid-row: 2;
+  }
+  
 
   .letstalk {
     color: #0300c7;
     font-family: 'Panchang', 'Arial', sans-serif;
-    font-weight: 600;
-    font-size: 3rem;
+    font-weight: 400;
+    font-size: 1rem;
     margin-top: 19vh;
     margin-left: 1vw;
 
