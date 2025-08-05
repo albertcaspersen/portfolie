@@ -22,7 +22,7 @@ import Designstud from './components/Designstud.vue'
       <a href="https://www.facebook.com/albert.caspersen?locale=da_DK" style="text-decoration: none; color: #0300c7;">Facebook</a><br><br>
 
       <span style="font-weight: 700;">Phone</span><br>
-      50557144
+      +45 50557144
     </h2>
   </div>
 </template>

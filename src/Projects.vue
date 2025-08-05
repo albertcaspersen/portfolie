@@ -233,7 +233,6 @@ const onLeave = (el, done) => {
             <Transition name="fade">
                 <div v-if="!selectedProject" class="text-overlay">
                     <h1 class="projektTekst">{{ activeProject.title }}</h1>
-                    <p class="tekstBeskrivelse">{{ activeProject.description }}</p>
                 </div>
             </Transition>
         </div>
@@ -432,7 +431,7 @@ const onLeave = (el, done) => {
 .page-container { width: 100vw; height: 100vh; margin: 0; padding: 0; position: relative; }
 .scene-container { position: absolute; top: 0; left: 0; width: 100%; height: 100vh; z-index: 1; }
 .loading-fallback { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; color: white; }
-.text-overlay { position: absolute; bottom: 9vh; left: 50%; transform: translateX(-50%); width: 80%; max-width: 900px; z-index: 2; background: rgba(0, 0, 10, 0.4); backdrop-filter: blur(15px); padding: 25px 35px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2); display: grid; grid-template-columns: 1fr 1.5fr; align-items: center; gap: 30px; }
+.text-overlay { position: absolute; bottom: 9vh; left: 50%; transform: translateX(-50%); max-width: auto; z-index: 2; background: rgba(0, 0, 10, 0.4); backdrop-filter: blur(15px); padding: 25px 35px; border-radius: 15px; border: 1px solid rgba(255, 255, 255, 0.2); display: grid; grid-template-columns: 1fr 0.0fr; align-items: center; gap: 30px; }
 .fade-enter-active, .fade-leave-active { transition: opacity 0.5s ease; }
 .fade-enter-from, .fade-leave-to { opacity: 0; }
 .projektTekst { font-weight: 600; color: #FFFFFF; font-size: clamp(1.5rem, 2.5vw, 1rem); margin: 0; font-family: 'Panchang-Medium', sans-serif;}

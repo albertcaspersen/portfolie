@@ -176,7 +176,7 @@ onBeforeUnmount(() => {
 }
 
 .Albert {
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     font-weight: 400;
     font-size: 23vh;
     line-height: 1;
@@ -187,7 +187,7 @@ onBeforeUnmount(() => {
     margin-left: 1vw;
 }
 .Valdemar {
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     font-weight: 400;
     font-size: 23vh;
     line-height: 1;
@@ -208,27 +208,27 @@ onBeforeUnmount(() => {
     transition: opacity 0.3s ease;
 }
 .omMig {
-    font-family: 'Panchang-medium', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     color: #0300c7;
     font-size: 2.5rem;
     margin-top: 25vh;
 }
 .omMig2 {
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     color: #0300c7;
     font-size: 1.5rem;
     margin-top: 3vh;
 }
 .explore {
     margin-top: 25vh;
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     color: #0300c7;
     font-size: 1rem;
     margin-top: 12vh;
 }
 .bogstav {
     position: absolute;
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     color: #0300c7;
     top: 47vh;
     left: 43vw;
@@ -244,13 +244,13 @@ onBeforeUnmount(() => {
     position: absolute;
     top: 75vh;
     left: 39vw;
-    font-family: 'Panchang-Regular', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     color: #0300c7;
     font-size: 3rem;
     margin-bottom: 3vh;
 }
 .info {
-    font-family: 'Panchang-light', 'Arial', sans-serif;
+    font-family: 'Panchang', 'Arial', sans-serif;
     font-weight: 100;
     color: #0300c7;
     font-size: 1.2rem;
