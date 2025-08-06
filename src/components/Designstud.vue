@@ -46,7 +46,7 @@ import { isDarkMode } from '../themeState.js';
     border: solid 3px transparent;
     color: #0300c7; /* Standard farve: Blå */
     height: 8vh;
-    padding-left: 5%;
+    padding-left: 0.85rem;
     /*font-family: 'Panchang-Regular', 'Arial', sans-serif;*/
     font-family: 'Panchang', 'Arial', sans-serif;
     font-size: 0.91rem;

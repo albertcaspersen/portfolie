@@ -120,7 +120,7 @@ watch(isMenuOpen, (isOpen) => {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 4.9rem;
+  width: 2.0rem;
   align-items: center;
   height: 2rem;
   background: transparent;
@@ -129,7 +129,7 @@ watch(isMenuOpen, (isOpen) => {
   padding: 0;
   z-index: 1001;
   background-color: transparent;
-  right: -2.6vw;
+  right: 0.8rem;
   position: absolute;
 }
 
@@ -166,7 +166,7 @@ watch(isMenuOpen, (isOpen) => {
   font-size: 3.5rem;
   font-weight: 600;
   margin: 1.5rem 0; /* Lille margin mellem linkene */
-  padding: 0 0 0 5vw; /* Kun left padding */
+  padding: 0 0 0 0.7rem; /* Kun left padding */
   line-height: 1; /* Normal line-height */
   position: relative;
   top: -17vh;
@@ -209,8 +209,7 @@ watch(isMenuOpen, (isOpen) => {
   font-weight: 100;
   position: absolute;
   bottom: 10vh;
-  left: 5vw;
-  padding-left: 0.18rem;
+  left: 0.9rem;
   width: 100%;
 }
 
