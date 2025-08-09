@@ -459,7 +459,7 @@ const onLeave = (el, done) => {
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        padding: 80px 1rem 2rem 1rem; /* Plads til navbar i toppen */
+        padding: 80px 0.9rem 2rem 0.9rem; /* Plads til navbar i toppen */
         background-color: #00001a9f; /* Mørk baggrund til mobil */
         color: #FFFFFF;
     }

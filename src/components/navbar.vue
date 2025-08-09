@@ -129,7 +129,7 @@ watch(isMenuOpen, (isOpen) => {
   padding: 0;
   z-index: 1001;
   background-color: transparent;
-  right: 0.8rem;
+  right: 0.9rem;
   position: absolute;
 }
 
