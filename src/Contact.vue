@@ -86,18 +86,63 @@ import Designstud from './components/Designstud.vue'
 }
 
 @media (max-width: 600px) {
-  .info {
-    font-size: 0.9rem;
-    margin-top: 10vh;
-    text-align: right; /* bevarer højrejustering på små skærme */
-    
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto auto auto auto;
+    gap: 20px;
+    position: relative;
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: auto;
+    overflow-y: visible;
   }
-
-
+  
   .grid-infotekst {
-    grid-column: 1/13; /* fylder hele bredden på mobil */
-    justify-self: end;
+    grid-column: 10/13;
+    grid-row: 3;
+    margin-right: 13.6%;
+    justify-self: end; /* hele boksen rykkes til højre */
   }
+  
+
+
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .projecttekst {
+    font-family: 'Panchang', 'Arial', sans-serif;
+    color: #0300c7;
+    margin-top: 15vh;
+    margin-left: 1vw;
+    font-size: 1.0rem;
+  }
+
+  .grid-talktext {
+    grid-column: 2/12;
+    grid-row: 2;
+  }
+
+  .grid-gotaproject {
+    grid-column: 2/12;
+    grid-row: 2;
+  }
+  
+
+  .letstalk {
+    color: #0300c7;
+    font-family: 'Panchang', 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    margin-top: 19vh;
+    margin-left: 1vw;
+
+  }
+
 
 }
 
@@ -161,6 +206,7 @@ import Designstud from './components/Designstud.vue'
     margin-left: 1vw;
 
   }
+
 
 }
 
