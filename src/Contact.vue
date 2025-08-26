@@ -1,6 +1,64 @@
+<!-- Fil: Contact.vue -->
+
 <script setup>
+// Importer onUnmounted for oprydning
+import { ref, onMounted, onUnmounted } from 'vue';
+import gsap from 'gsap';
+import SplitType from 'split-type';
 import Navbar from './components/navbar.vue'
 import Designstud from './components/Designstud.vue'
+
+// Refs til elementerne
+const talkTextRef = ref(null);
+const projectTextRef = ref(null);
+const infoTextRef = ref(null);
+
+// Definer split-variabler uden for hooks, så vi kan tilgå dem i onUnmounted
+let talkTextSplit;
+let infoTextSplit;
+
+onMounted(() => {
+  // Split begge tekstblokke op i linjer
+  talkTextSplit = new SplitType(talkTextRef.value, { types: 'lines' });
+  infoTextSplit = new SplitType(infoTextRef.value, { types: 'lines' });
+
+  // Opret en samlet GSAP-tidslinje
+  const tl = gsap.timeline();
+
+  tl
+
+      // 2. Animer den midterste tekstblok som en helhed
+      .from(projectTextRef.value, {
+      opacity: 0,
+      y: 70,
+      duration: 0.6,
+      ease: 'power3.out'
+    }, "-=0.0")
+    // 1. Animer linjerne i den første tekstblok
+    .from(talkTextSplit.lines, {
+      opacity: 0,
+      y: 70,
+      duration: 0.7,
+      stagger: 0.2, // Justeret stagger for en hurtigere, flydende effekt
+      ease: 'power3.out'
+    })
+
+    // 3. Animer linjerne i infoteksten
+    .from(infoTextSplit.lines, {
+      opacity: 0,
+      y: 50,
+      duration: 0.6,
+      stagger: 0.2,
+      ease: 'power3.out'
+    }, "-=0.4"); // Overlapper også en smule
+});
+
+// Rense-funktion: Kører når man navigerer væk fra siden
+onUnmounted(() => {
+  // Gendanner den oprindelige HTML-struktur for at undgå fejl
+  if (talkTextSplit) talkTextSplit.revert();
+  if (infoTextSplit) infoTextSplit.revert();
+});
 </script>
 
 <template>
@@ -8,26 +66,30 @@ import Designstud from './components/Designstud.vue'
     <Navbar />
     <Designstud />
 
-    <h1 class="grid-item grid-talktext letstalk">
+    <h1 class="grid-item grid-talktext letstalk" ref="talkTextRef">
       Collaboration fuels my creativity – I love joining forces to turn bold ideas into reality. If you’re ready to build something exciting together, let’s connect. I’m currently looking for an internship this fall 2025.
     </h1>
-    <p class="grid-item grid-gotaproject projecttekst">Got a project in mind?</p>
+    
+    <p class="grid-item grid-gotaproject projecttekst" ref="projectTextRef">
+      Got a project in mind?
+    </p>
 
-    <h2 class="grid-item grid-infotekst info">
+    <h2 class="grid-item grid-infotekst info" ref="infoTextRef">
       <span style="font-weight: 700;">Mail</span><br>
        <a href="mailto:albertcaspersen@hotmail.com" style="text-decoration: none; color: #0300c7;">albertcaspersen@hotmail.com</a><br><br>
 
-      <span style="font-weight: 700;">Socials</span><br>
+      <span style="font-weight: 700; margin-top: 1rem;">Socials</span><br>
       <a href="https://www.instagram.com/albert_caspersen/" style="text-decoration: none; color: #0300c7;">Instagram</a><br>
       <a href="https://www.facebook.com/albert.caspersen?locale=da_DK" style="text-decoration: none; color: #0300c7;">Facebook</a><br><br>
 
-      <span style="font-weight: 700;">Phone</span><br>
+      <span style="font-weight: 700; margin-top: 1rem;">Phone</span><br>
       +45 50557144
     </h2>
   </div>
 </template>
 
 <style scoped>
+/* Din CSS ... */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -49,6 +111,15 @@ import Designstud from './components/Designstud.vue'
   font-size: 1rem;
   margin-top: 30vh;
   margin-left: 3.5vw;
+}
+
+/* OPDATERET: Kombineret CSS-regel for begge splittede tekstblokke */
+.letstalk .line,
+.info .line {
+  overflow: hidden; /* Forhindrer "flash" af tekst før animation */
+  display: block; /* Sikrer at hver linje tager fuld bredde */
+  /* Nogle gange kan man have brug for at tilføje `position: relative` her,
+     men prøv uden først. */
 }
 
 .grid-talktext {
@@ -84,6 +155,8 @@ import Designstud from './components/Designstud.vue'
   grid-row: 3;
   justify-self: end; /* hele boksen rykkes til højre */
 }
+
+/* ... Resten af din CSS er uændret ... */
 
 @media (max-width: 600px) {
   .grid-container {
@@ -209,8 +282,4 @@ import Designstud from './components/Designstud.vue'
 
 
 }
-
-
-
-
 </style>

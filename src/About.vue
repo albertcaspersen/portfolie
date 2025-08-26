@@ -132,8 +132,7 @@ onBeforeUnmount(() => {
                 Hello! <br> I’m a Coded Design student at the Danish school of media and journalism.
             </div>
             <div class="omMig2">
-                My work explores the space between simplicity and complexity — creating designs that are both engaging and intuitive. I enjoy pushing myself with technically advanced features like playful animations and Three.js, always with a focus on maintaining clarity and ease of use.
-                My goal is to build things that are fun to use — and just as enjoyable to make.
+                My work explores the space between simplicity and complexity — creating designs that are both engaging and intuitive. I always enjoy pushing myself and learning new features. My goal is to build things that are fun, useful, pleasing — and just as enjoyable to make.
             </div>
         </div>
     </div>
@@ -211,12 +210,12 @@ onBeforeUnmount(() => {
     font-family: 'Panchang', 'Arial', sans-serif;
     color: #0300c7;
     font-size: 2.5rem;
-    margin-top: 25vh;
+    margin-top: 19rem;
 }
 .omMig2 {
     font-family: 'Panchang', 'Arial', sans-serif;
     color: #0300c7;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-top: 3vh;
 }
 .explore {

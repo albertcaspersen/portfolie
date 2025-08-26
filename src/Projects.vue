@@ -113,20 +113,23 @@ const projects = ref([
         longDescription: "I came across someone who had made a really cool sphere using Perlin noise to distort its shape, which inspired me to create this Processing sketch.",
         longDescription2: "I created a simple sphere, added colors and Perlin noise, and included a variable to adjust the noise intensity, giving the sphere a dynamic, living appearance.", 
         media: new URL('./assets/sliderContent/sphereM.mp4', import.meta.url).href,
-        mediaType: 'video'
+        mediaType: 'video',
+        galleryImages: [
+            { src: new URL('./assets/gallery/sphereKode.png', import.meta.url).href, alt: 'sphere koden', type: 'image' }
+        ]
     },
     {
         id: 5,
         title: "Exam project about oxygen depletion for Videnskab.dk",
         description: "I made this cool...",
         longDescription: "This project was created for Videnskab.dk to engage children (ages 10–13) with the environmental issue of oxygen depletion in Danish waters. The player take on the role of an underwater photographer documenting signs of oxygen depletion, assisted by an AI-powered guide (OpenAI API) that answers the players questions in real time. After capturing a set amount of photos, players view their images in a gallery paired with information from Videnskab.dk.",
-        longDescription2: "I created the front page in Blender, featuring an animated ocean and a wind turbine, along with custom sound effects I designed in FL Studio.",
-        longDescription3: "I wrote and narrated the horror story. I edited the recordings and placed each recording in their seperate lantern across the forest. You are essentially walking around the forest finding and clicking on each lantern to hear the whole story. I also thought of including props that related to the story, but i got limited by computer power.",
-        longDescription4: "I am very satisfied with the end product, and learned so much about how strong some small elements can be. lighting, music etc.",
+        longDescription2: "This was my first time implementing multiple API-calls and have them work together, which worked perfectly in the end with somewhat fluent back and forth conversation pace.",
+        longDescription3: "",
+        longDescription4: "Basic understanding of using Blender came a long way for this project, and applying API-calls turned out to be a great but challenging succes.",
         media: new URL('./assets/sliderContent/HavetUnderPres.mp4', import.meta.url).href,
         mediaType: 'video',
         galleryImages: [
-            { src: new URL('./assets/gallery/videnskab1.png', import.meta.url).href, alt: 'Billede fra Videnskab.dk projektet', type: 'image' },
+            { src: new URL('./assets/gallery/videnskabKode.png', import.meta.url).href, alt: 'Billede fra Videnskab.dk projektet', type: 'image' },
             { src: new URL('./assets/gallery/videnskab2.png', import.meta.url).href, alt: 'Endnu et billede fra Videnskab.dk projektet', type: 'image' }
         ]
     }
@@ -283,7 +286,7 @@ const onLeave = (el, done) => {
                     </template>
 
                     <div class="back-button-container col-1-to-12">
-                        <button @click="selectedProject = null">Tilbage til oversigten</button>
+                        <button @click="selectedProject = null">Return to overview</button>
                     </div>
                 </div>
             </div>
@@ -397,9 +400,10 @@ const onLeave = (el, done) => {
 .projection-mapping .media-container { max-width: 35vw;}
 .projection-mapping .gallery-item-projection-mapping-2 {grid-row: 2; grid-column: 8 / span 4; max-width: 40vw; margin-top: 40vh;}
 
-.having-some-fun-with-perlin-noise .long-description {grid-row: 2; grid-column: 9 / span 4; max-width: 30vw;}
-.having-some-fun-with-perlin-noise .long-description-2 {grid-row: 2; grid-column: 9 / span 4; max-width: 30vw; margin-top: 35vh;}
-.having-some-fun-with-perlin-noise .media-container {max-width: 45vw;}
+.having-some-fun-with-perlin-noise .long-description {grid-row: 2; grid-column: 8 / span 4; max-width: 30vw; margin-top: 15rem;}
+.having-some-fun-with-perlin-noise .long-description-2 {grid-row: 3; grid-column: 3 / span 4; max-width: 30vw; margin-top: 25vh;}
+.having-some-fun-with-perlin-noise .media-container {max-width: 40rem;}
+.having-some-fun-with-perlin-noise .gallery-item-having-some-fun-with-perlin-noise-0 {grid-row: 3; grid-column: 8 / span 4; margin-top: 5rem;}
 
 .media-container img,
 .media-container video {
@@ -547,8 +551,10 @@ const onLeave = (el, done) => {
 .while-in-battle .long-description-2 { grid-row: 4; grid-column: 9 / span 4; margin-top: 45vh; max-width: 30vw;}
 .while-in-battle .long-description-3 { grid-row: 5; grid-column: 9 / span 4; margin-top: 99vh; max-width: 30vw; }
 
-.having-some-fun-with-perlin-noise .long-description {grid-row: 2; grid-column: 9 / span 4; max-width: 30vw;}
-.having-some-fun-with-perlin-noise .long-description-2 {grid-row: 4; grid-column: 9 / span 4; max-width: 30vw; margin-top: 35vh;}
+.having-some-fun-with-perlin-noise .long-description {grid-row: 3; grid-column: 8 / span 4; max-width: 30vw; margin-top: 15rem;}
+.having-some-fun-with-perlin-noise .long-description-2 {grid-row: 5; grid-column: 3 / span 4; max-width: 30vw; margin-top: 25vh;}
+.having-some-fun-with-perlin-noise .media-container {max-width: 40rem;}
+.having-some-fun-with-perlin-noise .gallery-item-having-some-fun-with-perlin-noise-0 {grid-row: 4; grid-column: 8 / span 4; margin-top: 5rem;}
 
 .projection-mapping .gallery-item-projection-mapping-2 {grid-row: 4; grid-column: 8 / span 4; max-width: 40vw; margin-top: 40vh;}
 

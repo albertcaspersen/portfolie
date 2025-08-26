@@ -42,9 +42,9 @@ onMounted(() => {
       opacity: 0,
       y: 70,
       duration: 0.4,
-      stagger: 0.11,
+      stagger: 0.15,
       ease: 'power2.out'
-    }, "-=0.4");
+    }, "-=0.1");
 });
 
 // Ryd op når komponenten fjernes
