@@ -560,6 +560,17 @@ const onLeave = (el, done) => {
 
 
 
+
+.exam-project-about-oxygen-depletion-for-videnskabdk .long-description { grid-row: 3; grid-column: 3 / span 8; margin-top: 5vh;}
+.exam-project-about-oxygen-depletion-for-videnskabdk .long-description-2 { grid-row: 7; grid-column: 3 / span 5; margin-top: 16vh; max-width: 30vw;}
+.exam-project-about-oxygen-depletion-for-videnskabdk .long-description-3 { grid-row: 7; grid-column: 3 / span 8; margin-top: 5vh; }
+.exam-project-about-oxygen-depletion-for-videnskabdk .long-description-4 { grid-row: 5; grid-column: 7 / span 4; margin-top: 17vh; }
+.exam-project-about-oxygen-depletion-for-videnskabdk .gallery-item-exam-project-about-oxygen-depletion-for-videnskabdk-0 { grid-row: 6; grid-column: 7 / span 4; margin-top: 5vh; }
+.exam-project-about-oxygen-depletion-for-videnskabdk .gallery-item-exam-project-about-oxygen-depletion-for-videnskabdk-1 { grid-row: 4; grid-column: 3 / span 4; margin-top: 5vh;}
+
+
+
+
     }
 
 
